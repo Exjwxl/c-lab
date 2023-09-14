@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+struct student {
+    int rollno;
+    char name[10];
+    int m1, m2, m3, m4, m5;
+    int totalmarks;
+} s[10];
+
+void main() { 
+    int n, i, j, k, a[10];
+    printf("Enter the number of students:\n");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("Enter the name: \n");
+        scanf("%s", s[i].name);
+
+        printf("Enter the rollno:\n");
+        scanf("%d", &s[i].rollno); 
+
+        printf("Enter the marks of 1st subject: \n");
+        scanf("%d", &s[i].m1);
+
+        printf("Enter the marks of 2nd subject: \n");
+        scanf("%d", &s[i].m2);
+
+        printf("Enter the marks of 3rd subject: \n");
+        scanf("%d", &s[i].m3);
+
+        printf("Enter the marks of 4th subject: \n");
+        scanf("%d", &s[i].m4);
+
+        printf("Enter the marks of 5th subject: \n");
+        scanf("%d", &s[i].m5);
+    }
+
+    for (i = 0; i < n; i++) {
+        s[i].totalmarks = s[i].m1 + s[i].m2 + s[i].m3 + s[i].m4 + s[i].m5;
+        a[i] = s[i].totalmarks;
+    }
+
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                k = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = k;
+            }
+        }
+    }
+
+    printf("Name\tRoll no\tMarks1\tMarks2\tMarks3\tMarks4\tMarks5\tTotal Marks\n");
+    for (i = 0; i < n; i++) {
+        printf("%s\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", s[i].name, s[i].rollno, s[i].m1, s[i].m2, s[i].m3, s[i].m4, s[i].m5, s[i].totalmarks);
+    }
+
+    printf("Marks in ascending order: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+
+    
+}
